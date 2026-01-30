@@ -1,0 +1,20 @@
+version: 3
+services:
+  app:
+    container_name: spring-boot-app
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      dbpostgresql
+    environment:
+      - SPRING_DATASOURCE_URL: jdbc:postgresql://dbpostgresql:5432/test-db
+
+  dbpostgresql:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=test-db
