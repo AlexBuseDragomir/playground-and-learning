@@ -12,4 +12,4 @@ then
 	# Run the apt version of the command
 	sudo apt update
 	sudo apt dist-upgrade
-ifi
+fi
