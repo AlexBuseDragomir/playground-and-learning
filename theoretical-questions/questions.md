@@ -322,7 +322,7 @@ Answer: An artifact repository is a dedicated server used to store and manage th
 Answer: Pipeline as Code means defining your CI/CD workflow in a configuration file (like a Jenkinsfile, .gitlab-ci.yml, or github-actions.yml) that lives inside your project’s version control alongside your Java code. This allows the pipeline to be versioned, easily audited, shared across teams, and automatically restored if the build server fails.
 
 
-JAVA 7, 11, 17
+JAVA 8, 11, 17
 
 1. What are the most significant features introduced in Java 8 compared to earlier versions?
 
