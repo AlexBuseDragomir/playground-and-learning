@@ -3,9 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ──────────────────────────────────────────────
-  # 2) Generic cache with actions/cache
-  # ──────────────────────────────────────────────
+  # 1) Generic cache with actions/cache
   actions-cache:
     name: Prime demo cache
     runs-on: ubuntu-24.04
@@ -24,7 +22,7 @@ jobs:
       - name: Populate cache directory
         if: steps.demo-cache.outputs.cache-hit != 'true'
         run: |
-          echo "Cache miss – generating contents"
+          echo "Cache miss, generating contents"
           mkdir -p demo-cache
           date > demo-cache/timestamp.txt
 
@@ -41,9 +39,7 @@ jobs:
           echo "cache-hit? -> ${{ steps.demo-cache.outputs.cache-hit }}"
           cat demo-cache/timestamp.txt
 
-  # ──────────────────────────────────────────────
-  # 3) Cache via actions/setup-node
-  # ──────────────────────────────────────────────
+  # 2) Cache via actions/setup-node
   node-cache:
     name: npm dependency cache (setup-node)
     runs-on: ubuntu-24.04

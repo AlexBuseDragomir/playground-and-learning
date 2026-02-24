@@ -3,21 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ######################################
   #  GITHUB (MICROSOFT) HOSTED RUNNERS
-  ######################################
-  #  GitHub provides hosted runners which run on Microsoft Azure.
-  #  
-  #  Open source projects get some free usage and pro/team/enterprise GitHub
-  #  subscriptions also come with some number of minutes included (after which
-  #  you pay based on usage.
-  #   
-  #  These are the easiest to get started with (require no additional configuration
-  #  and it makes sense to use the free minutes, but only on workflows which are not in the
-  #  critical path for your production deployments. For usage beyond your quota I suggest
-  #  looking at the below options for higher performance (and more affordable)
-  #  approaches!
-  ######################################
   github-hosted-ubuntu-vm:
     name: Ubuntu 24.04 VM
     runs-on: ubuntu-24.04
@@ -56,25 +42,9 @@ jobs:
         run: |
           echo "Hello from ${{ runner.os }}-${{ runner.arch }}"
           echo "Runner name (type): ${{ runner.name }}"
-          echo "Container image:   $(grep PRETTY_NAME /etc/os-release)"
+          echo "Container image: $(grep PRETTY_NAME /etc/os-release)"
 
-  ######################################
   #  3RD PARTY HOSTED RUNNERS
-  ######################################
-  #  There are companies which host GitHub Action runners that provide increased performance for less $$$
-  # 
-  #  One such company happens to be the sponsor of the course! 🙏
-  # 
-  #  ✨ Namespace Labs (https://namespace.so/) ✨
-  #
-  #  You can likely cut your build times (and your CI bill) signiticantly by using their runners
-  #  and it only takes changing a single line of yaml:
-  #  
-  #  - runs-on: ubuntu-24.04 
-  #  + runs-on: namespace-profile-default # The default as of July 2025 is Ubuntu 22.04
-  #
-  #  (They also offer MacOS and Windows runners!)
-  ######################################
   namespace-ubuntu-vm:
     name: Namespace Ubuntu VM
     runs-on: namespace-profile-default
@@ -84,9 +54,7 @@ jobs:
           echo "Hello from ${{ runner.os }}-${{ runner.arch }}"
           echo "Runner name (type): ${{ runner.name }}"
   
-  ######################################
   #  SELF HOSTED RUNNERS
-  ######################################
   #  There are also methods to self-host github action runners.
   #
   #  These can provide inexpensive compute, but with increased operational overhead.
@@ -96,6 +64,3 @@ jobs:
   #    - https://runs-on.com/ (run jobs as EC2 instances in AWS)
   #    - https://github.com/actions/actions-runner-controller (run jobs in any Kubernetes cluster)
   #    - https://docs.railway.com/tutorials/github-actions-runners (run jobs on Railway)
-  # 
-  #  Configuration/usage of these is outside the scope of this course, and is left as an exercise for the reader
-  ######################################
