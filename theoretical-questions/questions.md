@@ -476,69 +476,6 @@ Answer: Build tools integrate directly with testing frameworks (like JUnit or Te
 Answer: CI servers (like Jenkins or GitLab CI) are simply orchestrators; they don't inherently know how to compile Java code. They rely entirely on the project's build tool to execute the build via a command-line instruction. The build tool ensures that the application is built and tested in the exact same standardized way on the CI server as it is on a developer's local machine.
 
 
-Docker
-
-1. What is Docker?
-
-Answer: Docker is an open-source platform that automates the packaging, deployment, and management of applications within lightweight, isolated environments called containers.
-
-2. How does a Docker Container differ from a Virtual Machine (VM)?
-
-Answer: A VM includes a full guest operating system and requires a hardware hypervisor, making it heavy and slow to start. A Docker container is lightweight because it shares the host system's OS kernel and only packages the application and its specific dependencies.
-
-3. What is the difference between a Docker Image and a Docker Container?
-
-Answer: A Docker Image is a read-only, immutable template containing the application code, libraries, and environment settings. A Docker Container is the live, runnable instance of that image.
-
-4. What is a Dockerfile?
-
-Answer: A Dockerfile is a plain text document containing a sequential set of instructions (such as FROM, COPY, RUN, and CMD) that the Docker daemon executes to automatically build a new Docker image layer by layer.
-
-5. What is Docker Hub?
-
-Answer: Docker Hub is the default, cloud-based public registry provided by Docker. Developers use it to push, pull, store, and share Docker images with their team or the global community.
-
-6. What is a Docker Volume used for?
-
-Answer: A Docker Volume is used for data persistence. Because containers are ephemeral (any local data is lost when the container is deleted), volumes safely store database files or application data directly on the host machine, outside the container's temporary file system.
-
-7. What is Docker Compose?
-
-Answer: Docker Compose is a utility used to define and manage multi-container Docker applications. It allows developers to configure all required services, networks, and volumes in a single docker-compose.yml file, starting the entire environment with one command (docker-compose up).
-
-8. What is the difference between the docker run and docker start commands?
-
-Answer: The docker run command creates a brand new container from a specified image and executes it. The docker start command simply resumes a pre-existing container that is currently in a stopped state.
-
-9. How do you expose a container's port to the host machine?
-
-Answer: You use the -p (or --publish) flag with the docker run command to map a port from the host machine to a specific port inside the container. For example, docker run -p 8080:80 nginx forwards traffic from the host's port 8080 to the container's port 80.
-
-10. What is the purpose of Docker networking?
-
-Answer: Docker networking enables isolated containers to securely communicate with one another, the host machine, or external networks. The default "bridge" network allows containers running on the same host daemon to resolve and talk to each other using their container names.
-
-11. How do you execute a command or open a shell inside a currently running container?
-
-Answer: You use the docker exec command. To access an interactive terminal within the container, you use the -i (interactive) and -t (tty) flags alongside the shell path. For example: docker exec -it <container_name_or_id> /bin/bash (or /bin/sh for lightweight images like Alpine).
-
-12. What is the difference between the CMD and ENTRYPOINT instructions?
-
-Answer: Both define the default executable behavior of the container. CMD provides default commands and arguments that can be easily overwritten by appending a new command at the end of docker run. ENTRYPOINT sets a hardcoded executable that cannot be easily overridden; any arguments passed at the end of docker run are simply appended as arguments to the ENTRYPOINT process.
-
-13. How do you list the containers currently running on your system?
-
-Answer: You use the docker ps command. By default, it displays only the active, running containers along with their IDs, names, and mapped ports. To see all containers on your machine, including those that are stopped or exited, you append the -a flag (docker ps -a).
-
-14. What command is used to download an image from a registry without starting a container?
-
-Answer: You use the docker pull command followed by the image name and an optional tag (e.g., docker pull postgres:15). This simply fetches the read-only image layers from Docker Hub (or a private registry) and stores them on your local machine for future use.
-
-15. What command is used to list all the Docker images stored on your local machine?
-
-Answer: You use the docker images command (or docker image ls). This outputs a list of all locally available images, displaying their repository name, tag, image ID, creation time, and file size.
-
-
 HIBERNATE & SPRING DATA JPA
 
 1. What is JPA, and how does it relate to Hibernate?
@@ -620,3 +557,66 @@ Answer: The four states are: Transient (newly created, not yet associated with t
 20. What is the purpose of the cascade attribute in JPA relationships?
 
 Answer: The cascade attribute (such as CascadeType.ALL or CascadeType.REMOVE) tells JPA to automatically propagate database operations from a parent entity to its associated child entities. For example, if you delete a parent entity, cascading ensures all of its linked children are also deleted without requiring separate manual queries.
+
+
+Docker
+
+1. What is Docker?
+
+Answer: Docker is an open-source platform that automates the packaging, deployment, and management of applications within lightweight, isolated environments called containers.
+
+2. How does a Docker Container differ from a Virtual Machine (VM)?
+
+Answer: A VM includes a full guest operating system and requires a hardware hypervisor, making it heavy and slow to start. A Docker container is lightweight because it shares the host system's OS kernel and only packages the application and its specific dependencies.
+
+3. What is the difference between a Docker Image and a Docker Container?
+
+Answer: A Docker Image is a read-only, immutable template containing the application code, libraries, and environment settings. A Docker Container is the live, runnable instance of that image.
+
+4. What is a Dockerfile?
+
+Answer: A Dockerfile is a plain text document containing a sequential set of instructions (such as FROM, COPY, RUN, and CMD) that the Docker daemon executes to automatically build a new Docker image layer by layer.
+
+5. What is Docker Hub?
+
+Answer: Docker Hub is the default, cloud-based public registry provided by Docker. Developers use it to push, pull, store, and share Docker images with their team or the global community.
+
+6. What is a Docker Volume used for?
+
+Answer: A Docker Volume is used for data persistence. Because containers are ephemeral (any local data is lost when the container is deleted), volumes safely store database files or application data directly on the host machine, outside the container's temporary file system.
+
+7. What is Docker Compose?
+
+Answer: Docker Compose is a utility used to define and manage multi-container Docker applications. It allows developers to configure all required services, networks, and volumes in a single docker-compose.yml file, starting the entire environment with one command (docker-compose up).
+
+8. What is the difference between the docker run and docker start commands?
+
+Answer: The docker run command creates a brand new container from a specified image and executes it. The docker start command simply resumes a pre-existing container that is currently in a stopped state.
+
+9. How do you expose a container's port to the host machine?
+
+Answer: You use the -p (or --publish) flag with the docker run command to map a port from the host machine to a specific port inside the container. For example, docker run -p 8080:80 nginx forwards traffic from the host's port 8080 to the container's port 80.
+
+10. What is the purpose of Docker networking?
+
+Answer: Docker networking enables isolated containers to securely communicate with one another, the host machine, or external networks. The default "bridge" network allows containers running on the same host daemon to resolve and talk to each other using their container names.
+
+11. How do you execute a command or open a shell inside a currently running container?
+
+Answer: You use the docker exec command. To access an interactive terminal within the container, you use the -i (interactive) and -t (tty) flags alongside the shell path. For example: docker exec -it <container_name_or_id> /bin/bash (or /bin/sh for lightweight images like Alpine).
+
+12. What is the difference between the CMD and ENTRYPOINT instructions?
+
+Answer: Both define the default executable behavior of the container. CMD provides default commands and arguments that can be easily overwritten by appending a new command at the end of docker run. ENTRYPOINT sets a hardcoded executable that cannot be easily overridden; any arguments passed at the end of docker run are simply appended as arguments to the ENTRYPOINT process.
+
+13. How do you list the containers currently running on your system?
+
+Answer: You use the docker ps command. By default, it displays only the active, running containers along with their IDs, names, and mapped ports. To see all containers on your machine, including those that are stopped or exited, you append the -a flag (docker ps -a).
+
+14. What command is used to download an image from a registry without starting a container?
+
+Answer: You use the docker pull command followed by the image name and an optional tag (e.g., docker pull postgres:15). This simply fetches the read-only image layers from Docker Hub (or a private registry) and stores them on your local machine for future use.
+
+15. What command is used to list all the Docker images stored on your local machine?
+
+Answer: You use the docker images command (or docker image ls). This outputs a list of all locally available images, displaying their repository name, tag, image ID, creation time, and file size.
