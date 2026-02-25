@@ -17,4 +17,4 @@ jobs:
         run: |
           echo "::debug::This is a debug message"
           echo "::info::This is an info message"
-          echo "::warning::This is an warning message"
+          echo "::warning::This is a warning message"

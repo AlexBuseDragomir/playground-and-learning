@@ -7,31 +7,32 @@ on:
         required: true
         type: string
       environment:
-        description: "Target GitHub environment name (e.g. staging, production)"
         required: true
         type: string
     secrets:
-      # NOTE: You can only pass repo/org secrets here, not environment secrets
       EXAMPLE_REPOSITORY_SECRET:
         required: true
+      # Even environment secrets must be defined or inherited
+      EXAMPLE_ENVIRONMENT_SECRET:
+        required: false 
 
 jobs:
   reusable-workflow-job:
+    # This opens the door to the environment's variables and secrets
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-24.04
 
     steps:
       - name: job in reusable workflow
         env:
-          # explicit input
           FOO: ${{ inputs.foo }}
-          # from repo/org level
           EXAMPLE_REPOSITORY_SECRET: ${{ secrets.EXAMPLE_REPOSITORY_SECRET }}
-          # from the **environment** selected above
+          # This will now correctly pull from the 'environment' defined above
           EXAMPLE_ENVIRONMENT_SECRET: ${{ secrets.EXAMPLE_ENVIRONMENT_SECRET }}
           EXAMPLE_ENVIRONMENT_VARIABLE: ${{ vars.EXAMPLE_ENVIRONMENT_VARIABLE }}
         run: |
           echo "FOO                           = $FOO"
+          # Note: Secrets will be masked (***) in logs
           echo "EXAMPLE_REPOSITORY_SECRET     = $EXAMPLE_REPOSITORY_SECRET"
           echo "EXAMPLE_ENVIRONMENT_SECRET    = $EXAMPLE_ENVIRONMENT_SECRET"
           echo "EXAMPLE_ENVIRONMENT_VARIABLE  = $EXAMPLE_ENVIRONMENT_VARIABLE"

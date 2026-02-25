@@ -27,7 +27,7 @@ jobs:
           echo "Number: ${{ matrix.number }}"
           echo "Letter: ${{ matrix.letter }}"
 
-      # Step 2 – run for every combo EXCEPT number=2 ∧ letter=c
+      # Step 2 – run for every combo EXCEPT number=2 AND letter=c
       - name: Run everywhere except 2c
         if: ${{ ! (matrix.number == 2 && matrix.letter == 'c') }}
         run: echo "✔ This step runs for ${{ matrix.number }}${{ matrix.letter }}"

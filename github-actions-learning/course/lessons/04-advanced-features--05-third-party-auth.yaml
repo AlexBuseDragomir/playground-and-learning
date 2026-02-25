@@ -24,4 +24,5 @@ jobs:
         uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
         with:
           aws-region: us-east-2
-          role-to-assume: arn:aws:iam::917774925227:role/github-actions-role
+          # For ROLE_ID => 12-digit ID of the AWS account that owns this role
+          role-to-assume: arn:aws:iam::<ROLE_ID>:role/github-actions-role

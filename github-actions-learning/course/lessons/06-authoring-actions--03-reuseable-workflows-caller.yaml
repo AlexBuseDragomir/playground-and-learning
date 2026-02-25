@@ -6,6 +6,7 @@ on:
 jobs:
   call-reuseable-workflow-path:
     name: Invoke reuseable workflow with relative path
+    # Ensure this file exists in the SAME repo
     uses: ./.github/workflows/06-authoring-actions--02-reuseable-workflows-source.yaml
     with:
       foo: bar
@@ -14,9 +15,11 @@ jobs:
 
   call-reuseable-workflow-sha:
     name: Invoke reuseable workflow with repo + commit hash
-    uses: sidpalas/devops-directive-github-actions-course/.github/workflows/06-authoring-actions--02-reuseable-workflows-source.yaml@f2d2e4a0a9ee82ef859e0f83ebfb5236efce069f
+    uses: owner/repo/.github/workflows/file.yaml@commit-sha # structure to follow
     with:
       foo: bar
       environment: production
     secrets:
+      # Pass both repository and environment-specific secrets
       EXAMPLE_REPOSITORY_SECRET: ${{ secrets.EXAMPLE_REPOSITORY_SECRET }}
+      EXAMPLE_ENVIRONMENT_SECRET: ${{ secrets.EXAMPLE_ENVIRONMENT_SECRET }}
